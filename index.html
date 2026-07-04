@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduKeep - Student Record Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome for clean dashboard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- 1. LOGIN SCREEN -->
+    <div id="login-screen" class="view active-view">
+        <div class="login-card">
+            <div class="login-header">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <h2>EduKeep Portal</h2>
+                <p>Sign in </p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username / Email</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="username" placeholder="admin" required value="admin">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required value="admin123">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MAIN APP LAYOUT (Hidden until logged in) -->
+    <div id="main-app" class="app-container hidden">
+        
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>EduKeep</span>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="#" class="menu-item active" data-target="dashboard-page">
+                    <i class="fa-solid fa-chart-pie"></i> Dashboard
+                </a>
+                <a href="#" class="menu-item" data-target="profile-page">
+                    <i class="fa-solid fa-user-graduate"></i> Student Profile
+                </a>
+                <a href="#" class="menu-item" data-target="records-page">
+                    <i class="fa-solid fa-file-invoice-amount"></i> Academic Records
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn" class="btn btn-logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <header class="top-header">
+                <div class="search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Quick search student by ID or name...">
+                </div>
+                <div class="user-profile-top">
+                    <span class="user-role">Administrator</span>
+                    <div class="avatar">A</div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                
+                <!-- 2. DASHBOARD PAGE -->
+                <section id="dashboard-page" class="page-view active-page">
+                    <div class="page-header">
+                        <h1>System Dashboard</h1>
+                        <p>Overview of institutional analytics</p>
+                    </div>
+                    
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon blue"><i class="fa-solid fa-users"></i></div>
+                            <div class="stat-info">
+                                <h3>Total Students</h3>
+                                <p class="stat-number">1,248</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon green"><i class="fa-solid fa-chalkboard-user"></i></div>
+                            <div class="stat-info">
+                                <h3>Total Faculty</h3>
+                                <p class="stat-number">84</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon purple"><i class="fa-solid fa-award"></i></div>
+                            <div class="stat-info">
+                                <h3>Avg. GPA</h3>
+                                <p class="stat-number">3.42</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Updates & Quick Actions -->
+                    <div class="dashboard-grid">
+                        <div class="panel">
+                            <div class="panel-header"><h3>Recent Student Registrations</h3></div>
+                            <div class="panel-body">
+                                <ul class="activity-list">
+                                    <li>
+                                        <div class="activity-img">JD</div>
+                                        <div class="activity-details">
+                                            <strong>Jane Doe</strong> Registered to Computer Science
+                                            <span>2 hours ago</span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="activity-img">js</div>
+                                        <div class="activity-details">
+                                            <strong>John Smith</strong> Updated emergency contact details
+                                            <span>5 hours ago</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. STUDENT PROFILE PAGE -->
+                <section id="profile-page" class="page-view hidden">
+                    <div class="page-header">
+                        <h1>Student Personal Details</h1>
+                        <p>Manage demographic and administrative records</p>
+                    </div>
+
+                    <div class="profile-layout">
+                        <div class="profile-sidebar">
+                            <div class="profile-card-main">
+                                <div class="big-avatar">JD</div>
+                                <h2>Jane Doe</h2>
+                                <p class="student-id">ID: STU-2026-0042</p>
+                                <span class="badge badge-active">Enrolled</span>
+                            </div>
+                        </div>
+
+                        <div class="profile-details-panel">
+                            <div class="panel">
+                                <div class="panel-header"><h3>Personal Information</h3></div>
+                                <div class="panel-body">
+                                    <form id="profile-form" class="grid-form">
+                                        <div class="form-group">
+                                            <label>Full Name</label>
+                                            <input type="text" value="Jane Doe" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Date of Birth</label>
+                                            <input type="date" value="2004-05-14" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Email Address</label>
+                                            <input type="email" value="jane.doe@university.edu" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="tel" value="+1 (555) 234-5678" required>
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label>Home Address</label>
+                                            <input type="text" value="123 Academic Way, Suite 4B, Boston, MA" required>
+                                        </div>
+                                        <button type="button" class="btn btn-primary save-btn">Update Profile</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. ACADEMIC RECORDS PAGE -->
+                <section id="records-page" class="page-view hidden">
+                    <div class="page-header">
+                        <h1>Academic Portfolio</h1>
+                        <p>Performance transcript and course enrollment tracking</p>
+                    </div>
+
+                    <div class="academic-summary-cards">
+                        <div class="mini-card">
+                            <span>Current Term</span>
+                            <strong>Spring 2026</strong>
+                        </div>
+                        <div class="mini-card">
+                            <span>Credits Completed</span>
+                            <strong>64 Credits</strong>
+                        </div>
+                        <div class="mini-card">
+                            <span>Cumulative GPA</span>
+                            <strong>3.85 / 4.00</strong>
+                        </div>
+                    </div>
+
+                    <div class="panel margin-top">
+                        <div class="panel-header flex-header">
+                            <h3>Current Semester Courses</h3>
+                            <button class="btn btn-secondary btn-sm" id="add-course-btn"><i class="fa-solid fa-plus"></i> Add Course Record</button>
+                        </div>
+                        <div class="panel-body no-padding">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Course Code</th>
+                                        <th>Course Title</th>
+                                        <th>Credits</th>
+                                        <th>Grade</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="records-table-body">
+                                    <!-- Dynamic rows from app.js will live here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
